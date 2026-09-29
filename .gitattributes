@@ -1,0 +1,4 @@
+# в репозитории и в рабочей копии — переводы строк LF (как ожидает Prettier)
+* text=auto eol=lf
+*.png binary
+*.gif binary

@@ -45,7 +45,9 @@ a {
   border-radius: 50%;
   background: transparent;
   color: var(--text-2);
-  transition: background 0.15s, color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s;
 }
 
 .icon-btn:hover {
@@ -69,7 +71,9 @@ a {
   background: var(--accent-grad);
   color: #fff;
   font-weight: 600;
-  transition: filter 0.15s, opacity 0.15s;
+  transition:
+    filter 0.15s,
+    opacity 0.15s;
 }
 
 .primary-btn:hover:not(:disabled) {
@@ -124,7 +128,9 @@ a {
   border-radius: 12px;
   background: var(--panel-2);
   outline: none;
-  transition: border-color 0.15s, background 0.15s;
+  transition:
+    border-color 0.15s,
+    background 0.15s;
 }
 
 .text-input:focus {

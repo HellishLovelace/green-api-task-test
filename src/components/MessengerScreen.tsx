@@ -10,11 +10,7 @@ import './MessengerScreen.css';
 
 /** Основной экран: список чатов слева, переписка справа. Владеет состоянием чатов. */
 export function MessengerScreen({ creds, onLogout }: { creds: Credentials; onLogout: () => void }) {
-  const [state, dispatch] = useReducer(
-    chatReducer,
-    creds.idInstance,
-    (id) => loadChats(id) ?? initialState,
-  );
+  const [state, dispatch] = useReducer(chatReducer, creds.idInstance, (id) => loadChats(id) ?? initialState);
 
   // сохраняем переписку локально, чтобы она не пропадала после перезагрузки
   useEffect(() => saveChats(creds.idInstance, state), [creds.idInstance, state]);

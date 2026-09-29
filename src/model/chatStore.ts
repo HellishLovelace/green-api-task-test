@@ -63,19 +63,14 @@ export function notificationToAction(n: Notification): ChatAction | null {
     b.typeWebhook === 'outgoingMessageReceived' ||
     b.typeWebhook === 'outgoingAPIMessageReceived'
   ) {
-    const text =
-      b.messageData?.textMessageData?.textMessage ?? b.messageData?.extendedTextMessageData?.text;
+    const text = b.messageData?.textMessageData?.textMessage ?? b.messageData?.extendedTextMessageData?.text;
     // по заданию поддерживаем только текстовые сообщения
     if (text == null || !b.senderData?.chatId) return null;
 
     const incoming = b.typeWebhook === 'incomingMessageReceived';
     // в группе senderPhoneNumber — номер участника, а не чата: по нему нельзя искать личный чат
-    const isPrivate = b.senderData.chatType
-      ? b.senderData.chatType === 'user'
-      : !b.senderData.chatId.startsWith('-');
-    const phone = incoming && isPrivate && b.senderData.senderPhoneNumber
-      ? String(b.senderData.senderPhoneNumber)
-      : '';
+    const isPrivate = b.senderData.chatType ? b.senderData.chatType === 'user' : !b.senderData.chatId.startsWith('-');
+    const phone = incoming && isPrivate && b.senderData.senderPhoneNumber ? String(b.senderData.senderPhoneNumber) : '';
     return {
       type: 'messageReceived',
       chatId: b.senderData.chatId,
@@ -137,9 +132,7 @@ function updateChatWithMessage(state: ChatState, messageId: string, fn: (c: Chat
 export function chatReducer(state: ChatState, action: ChatAction): ChatState {
   switch (action.type) {
     case 'createChat': {
-      const exists = state.chats.find(
-        (c) => c.chatId === action.chatId || (action.phone && c.phone === action.phone),
-      );
+      const exists = state.chats.find((c) => c.chatId === action.chatId || (action.phone && c.phone === action.phone));
       if (exists) return { ...state, activeChatId: exists.chatId };
       const chat: Chat = {
         chatId: action.chatId,
@@ -197,9 +190,7 @@ export function chatReducer(state: ChatState, action: ChatAction): ChatState {
     case 'messageReceived': {
       const { message } = action;
       let chats = state.chats;
-      let chat = chats.find(
-        (c) => c.chatId === action.chatId || (action.phone !== '' && c.phone === action.phone),
-      );
+      let chat = chats.find((c) => c.chatId === action.chatId || (action.phone !== '' && c.phone === action.phone));
 
       if (!chat) {
         chat = {
@@ -240,8 +231,7 @@ export function chatReducer(state: ChatState, action: ChatAction): ChatState {
                 ...c,
                 messages: c.messages.map((m) =>
                   m.id === action.idMessage &&
-                  (action.status === 'failed' ||
-                    STATUS_RANK[action.status] > STATUS_RANK[m.status ?? 'sending'])
+                  (action.status === 'failed' || STATUS_RANK[action.status] > STATUS_RANK[m.status ?? 'sending'])
                     ? { ...m, status: action.status }
                     : m,
                 ),

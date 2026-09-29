@@ -54,7 +54,13 @@ export const TicksIcon = ({ double, ...p }: P & { double?: boolean }) => (
   <svg width="16" height="11" viewBox="0 0 16 11" fill="none" aria-hidden {...p}>
     <path d="M1 5.5 4.5 9 11 2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
     {double && (
-      <path d="M8 8.2 8.8 9 15 2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="M8 8.2 8.8 9 15 2"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     )}
   </svg>
 );
@@ -75,7 +81,14 @@ export const AlertIcon = (p: P) => (
 
 export const ChatBubblesIcon = (p: P) => (
   <svg {...base} viewBox="0 0 64 64" {...p}>
-    <path d="M10 14a6 6 0 0 1 6-6h24a6 6 0 0 1 6 6v14a6 6 0 0 1-6 6H24l-9 7v-7h1a6 6 0 0 1-6-6V14Z" fill="currentColor" opacity=".35" />
-    <path d="M24 30a6 6 0 0 1 6-6h18a6 6 0 0 1 6 6v12a6 6 0 0 1-6 6h-1v7l-9-7h-8a6 6 0 0 1-6-6V30Z" fill="currentColor" />
+    <path
+      d="M10 14a6 6 0 0 1 6-6h24a6 6 0 0 1 6 6v14a6 6 0 0 1-6 6H24l-9 7v-7h1a6 6 0 0 1-6-6V14Z"
+      fill="currentColor"
+      opacity=".35"
+    />
+    <path
+      d="M24 30a6 6 0 0 1 6-6h18a6 6 0 0 1 6 6v12a6 6 0 0 1-6 6h-1v7l-9-7h-8a6 6 0 0 1-6-6V30Z"
+      fill="currentColor"
+    />
   </svg>
 );

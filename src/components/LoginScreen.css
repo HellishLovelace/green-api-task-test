@@ -12,8 +12,7 @@
   padding: 24px 16px;
   background:
     radial-gradient(1200px 600px at 10% -10%, rgba(61, 123, 255, 0.18), transparent 60%),
-    radial-gradient(900px 500px at 110% 110%, rgba(138, 77, 255, 0.18), transparent 60%),
-    var(--bg);
+    radial-gradient(900px 500px at 110% 110%, rgba(138, 77, 255, 0.18), transparent 60%), var(--bg);
 }
 
 .login-card {

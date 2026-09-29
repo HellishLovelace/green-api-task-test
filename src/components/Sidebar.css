@@ -31,7 +31,9 @@
   border-radius: 50%;
   background: var(--max-blue);
   color: #fff;
-  transition: background 0.15s, transform 0.12s;
+  transition:
+    background 0.15s,
+    transform 0.12s;
 }
 
 .new-chat-btn:hover {

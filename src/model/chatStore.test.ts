@@ -34,7 +34,9 @@ describe('notificationToAction', () => {
     const img = incoming('');
     img.body.messageData = { typeMessage: 'imageMessage' };
     expect(notificationToAction(img)).toBeNull();
-    expect(notificationToAction({ receiptId: 2, body: { typeWebhook: 'stateInstanceChanged', timestamp: 1 } })).toBeNull();
+    expect(
+      notificationToAction({ receiptId: 2, body: { typeWebhook: 'stateInstanceChanged', timestamp: 1 } }),
+    ).toBeNull();
   });
 
   it('разбирает статус исходящего', () => {
@@ -74,7 +76,10 @@ describe('chatReducer', () => {
   });
 
   it('создаёт новый чат для неизвестного отправителя и считает непрочитанные', () => {
-    const s = chatReducer({ ...created, activeChatId: null }, notificationToAction(incoming('Hi', '2', '555', 79001112233))!);
+    const s = chatReducer(
+      { ...created, activeChatId: null },
+      notificationToAction(incoming('Hi', '2', '555', 79001112233))!,
+    );
     expect(s.chats).toHaveLength(2);
     expect(s.chats.find((c) => c.chatId === '555')!.unread).toBe(1);
   });

@@ -103,7 +103,11 @@ interface RequestOptions {
   emptyOnTimeout?: boolean;
 }
 
-async function request<T>(url: string, init: RequestInit = {}, { signal, emptyOnTimeout }: RequestOptions = {}): Promise<T> {
+async function request<T>(
+  url: string,
+  init: RequestInit = {},
+  { signal, emptyOnTimeout }: RequestOptions = {},
+): Promise<T> {
   let res: Response;
   try {
     res = await fetch(url, {
@@ -209,11 +213,7 @@ export async function resolveChatId(c: Credentials, phone: string): Promise<stri
 }
 
 /** SendMessage — отправка текстового сообщения. */
-export function sendMessage(
-  c: Credentials,
-  chatId: string,
-  message: string,
-): Promise<SendMessageResponse> {
+export function sendMessage(c: Credentials, chatId: string, message: string): Promise<SendMessageResponse> {
   return request<SendMessageResponse>(buildUrl(c, 'sendMessage'), {
     method: 'POST',
     body: JSON.stringify({ chatId, message }),

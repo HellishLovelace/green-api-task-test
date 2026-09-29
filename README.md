@@ -53,9 +53,11 @@ npm install
 npm run dev      # http://localhost:5173
 npm run build    # production-сборка в dist/
 npm test         # unit-тесты (vitest)
+npm run lint     # ESLint
+npm run format   # Prettier
 ```
 
-При пуше в `main` GitHub Actions (`.github/workflows/deploy.yml`) прогоняет тесты, собирает проект и публикует его на GitHub Pages.
+При пуше в `main` GitHub Actions (`.github/workflows/deploy.yml`) прогоняет линтер, проверку форматирования и тесты, собирает проект и публикует его на GitHub Pages.
 
 ## Настройка инстанса
 

@@ -1,10 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-import {
-  deleteNotification,
-  receiveNotification,
-  type Credentials,
-  type Notification,
-} from '../api/greenApi';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { deleteNotification, receiveNotification, type Credentials, type Notification } from '../api/greenApi';
 
 export type ConnectionStatus = 'connecting' | 'online' | 'error';
 
@@ -37,7 +32,9 @@ export function useNotifications(creds: Credentials, onNotification: (n: Notific
 
   // держим актуальный обработчик, не перезапуская цикл
   const handlerRef = useRef(onNotification);
-  handlerRef.current = onNotification;
+  useLayoutEffect(() => {
+    handlerRef.current = onNotification;
+  }, [onNotification]);
 
   useEffect(() => {
     const controller = new AbortController();

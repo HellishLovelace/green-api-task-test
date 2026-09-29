@@ -39,10 +39,7 @@ describe('resolveChatId', () => {
 describe('withRetry', () => {
   it('повторяет запрос при 429 и не повторяет при других ошибках', async () => {
     vi.useFakeTimers();
-    const flaky = vi
-      .fn()
-      .mockRejectedValueOnce(new GreenApiError('limit', 429))
-      .mockResolvedValueOnce('ok');
+    const flaky = vi.fn().mockRejectedValueOnce(new GreenApiError('limit', 429)).mockResolvedValueOnce('ok');
     const done = withRetry(flaky);
     await vi.runAllTimersAsync();
     expect(await done).toBe('ok');
