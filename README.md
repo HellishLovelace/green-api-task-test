@@ -25,8 +25,8 @@
 | ![Вход](docs/screenshots/01-login.png) | ![Переписка](docs/screenshots/02-chat.png) |
 | **Новый чат: маска номера** | **Тёмная тема** |
 | ![Новый чат](docs/screenshots/03-new-chat.png) | ![Тёмная тема](docs/screenshots/04-dark.png) |
-| **Предупреждение о выключенных уведомлениях** | **Телефон** |
-| ![Проверка настроек](docs/screenshots/07-settings-check.png) | <img src="docs/screenshots/05-mobile-list.png" width="45%" alt="Список чатов на телефоне"> <img src="docs/screenshots/06-mobile-chat.png" width="45%" alt="Переписка на телефоне"> |
+| **Предупреждение о выключенных уведомлениях** | |
+| ![Проверка настроек](docs/screenshots/07-settings-check.png) | |
 
 Имена и номера на скриншотах вымышленные.
 
@@ -87,7 +87,12 @@ src/
     ChatWindow.tsx            — лента сообщений и поле ввода
     Avatar.tsx, Icons.tsx
   utils/                      — телефон, время, localStorage
+  styles/
+    tokens.css                — цвета и размеры (CSS-переменные) для светлой и тёмной темы
+    base.css                  — базовые стили и общие элементы: кнопки, поле ввода, спиннер
 ```
+
+Стили компонентов лежат рядом с ними (`Sidebar.tsx` + `Sidebar.css`) и подключаются импортом из компонента; в `styles/` — только общее.
 
 Также написал vitest, лежат в директории рядом. Благодаря ним покрываются состояния разбора уведомлений из GreenApi, тест маски телефона, проверка определения инстанса (MAX или Telegram).
 

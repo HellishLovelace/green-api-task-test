@@ -7,6 +7,7 @@ import { Avatar } from './Avatar';
 import { LogoutIcon, PlusIcon } from './Icons';
 import { NewChatForm } from './NewChatForm';
 import { SettingsCheck } from './SettingsCheck';
+import './Sidebar.css';
 
 interface Props {
   creds: Credentials;

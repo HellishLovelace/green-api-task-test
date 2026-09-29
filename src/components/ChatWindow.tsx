@@ -5,6 +5,7 @@ import { dayKey, formatDayLabel, formatTime } from '../utils/time';
 import { Avatar } from './Avatar';
 import { MESSENGERS, type Messenger } from '../model/messenger';
 import { AlertIcon, BackIcon, ChatBubblesIcon, ClockIcon, SendIcon, TicksIcon } from './Icons';
+import './ChatWindow.css';
 
 interface Props {
   chat: Chat | null;

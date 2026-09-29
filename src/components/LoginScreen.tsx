@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react';
 import { defaultApiUrl, getSettings, getStateInstance, withRetry, type Credentials } from '../api/greenApi';
 import { MESSENGERS, messengerOfInstance, type Messenger } from '../model/messenger';
 import { EyeIcon, LogoIcon } from './Icons';
+import './LoginScreen.css';
 
 const stateMessages = (name: string): Record<string, string> => ({
   notAuthorized: `Инстанс не авторизован в ${name}. Авторизуйте его в личном кабинете GREEN-API.`,
@@ -105,6 +106,7 @@ export function LoginScreen({ onLogin }: { onLogin: (c: Credentials) => void }) 
         <label className="field">
           <span>idInstance</span>
           <input
+            className="text-input"
             inputMode="numeric"
             autoComplete="username"
             placeholder="3100123456"
@@ -118,6 +120,7 @@ export function LoginScreen({ onLogin }: { onLogin: (c: Credentials) => void }) 
           <span>apiTokenInstance</span>
           <div className="field-with-btn">
             <input
+              className="text-input"
               type={showToken ? 'text' : 'password'}
               autoComplete="current-password"
               placeholder="d75b3a66374942c5b3c019c698abc2067e151558acbd..."
@@ -138,6 +141,7 @@ export function LoginScreen({ onLogin }: { onLogin: (c: Credentials) => void }) 
         <label className="field">
           <span>apiUrl</span>
           <input
+            className="text-input"
             placeholder="https://3100.api.green-api.com"
             value={effectiveApiUrl}
             onChange={(e) => {

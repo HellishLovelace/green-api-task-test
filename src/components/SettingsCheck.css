@@ -1,0 +1,21 @@
+/* Предупреждение о выключенных уведомлениях инстанса. */
+
+.settings-check {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0 12px 8px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--danger) 10%, var(--panel));
+  font-size: 13.5px;
+}
+
+.settings-check ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.settings-check.ok {
+  background: color-mix(in srgb, var(--ok) 12%, var(--panel));
+}

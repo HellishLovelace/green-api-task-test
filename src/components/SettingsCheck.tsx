@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getSettings, setSettings, withRetry, type Credentials, type InstanceSettings } from '../api/greenApi';
+import './SettingsCheck.css';
 
 /** Настройки, без которых HTTP API не получает входящие сообщения и статусы. */
 const REQUIRED: InstanceSettings = { webhookUrl: '', incomingWebhook: 'yes', outgoingWebhook: 'yes' };

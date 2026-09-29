@@ -6,6 +6,7 @@ import { chatReducer, initialState, notificationToAction, type Message } from '.
 import { loadChats, saveChats } from '../utils/storage';
 import { ChatWindow } from './ChatWindow';
 import { Sidebar } from './Sidebar';
+import './MessengerScreen.css';
 
 /** Основной экран: список чатов слева, переписка справа. Владеет состоянием чатов. */
 export function MessengerScreen({ creds, onLogout }: { creds: Credentials; onLogout: () => void }) {

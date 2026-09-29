@@ -3,6 +3,7 @@ import { resolveChatId, type Credentials } from '../api/greenApi';
 import { MESSENGERS } from '../model/messenger';
 import { isValidPhone } from '../utils/phone';
 import { PhoneInput } from './PhoneInput';
+import './NewChatForm.css';
 
 interface Props {
   creds: Credentials;
@@ -37,6 +38,7 @@ export function NewChatForm({ creds, onCreated }: Props) {
   return (
     <form className="new-chat" onSubmit={submit} noValidate>
       <PhoneInput
+        className="text-input"
         messenger={messenger}
         placeholder="+7 (999) 123-45-67"
         value={phone}
@@ -48,6 +50,7 @@ export function NewChatForm({ creds, onCreated }: Props) {
         aria-label="Номер телефона получателя"
       />
       <input
+        className="text-input"
         placeholder="Имя (необязательно)"
         value={name}
         onChange={(e) => setName(e.target.value)}

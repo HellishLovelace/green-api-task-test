@@ -1,0 +1,15 @@
+/* Форма создания чата. */
+
+.new-chat {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0 12px 8px;
+  padding: 12px;
+  border-radius: 16px;
+  background: var(--panel-2);
+}
+
+.new-chat input {
+  background: var(--panel);
+}

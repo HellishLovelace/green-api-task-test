@@ -1,0 +1,53 @@
+/* Цвета и размеры (CSS-переменные) для светлой и тёмной темы.
+   Оформление по мотивам web.max.ru: светлые панели, синий акцент, голубой фон переписки с узором. */
+
+:root {
+  --accent: #2f6bff;
+  --accent-2: #8a4dff;
+  --accent-grad: linear-gradient(135deg, #3d7bff 0%, #8a4dff 100%);
+  --bg: #eef1f6;
+  --panel: #ffffff;
+  --panel-2: #f5f7fa;
+  --hover: #f0f3f8;
+  --active: #e7eeff;
+  --text: #0f1419;
+  --text-2: #6b7480;
+  --border: #e3e7ee;
+  --bubble-in: #ffffff;
+  --bubble-out: #dbe7ff;
+  --bubble-out-text: #0f1419;
+  --meta: #8a93a0;
+  --read: #2f6bff;
+  --danger: #e5484d;
+  --ok: #30a46c;
+  --max-blue: #1a86ff;
+  /* фон переписки как в MAX: голубой градиент и «космический» узор тонкими линиями */
+  --chat-bg: linear-gradient(200deg, #6fa6f0 0%, #86bcf0 50%, #a2d4e8 100%);
+  --chat-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' fill='none' stroke='%23174a8f' stroke-opacity='.2' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='55' cy='55' r='15'/%3E%3Cellipse cx='55' cy='55' rx='28' ry='8' transform='rotate(-20 55 55)'/%3E%3Cpath d='M190 28l4 9 10 1-7 7 2 10-9-5-9 5 2-10-7-7 10-1z'/%3E%3Cg transform='translate(196 160) rotate(35)'%3E%3Cpath d='M0-22C9-12 9 8 5 16H-5C-9 8-9-12 0-22z'/%3E%3Ccircle cy='-4' r='4'/%3E%3Cpath d='M-5 10l-7 11 7-4M5 10l7 11-7-4'/%3E%3C/g%3E%3Cpath d='M76 172a19 19 0 1 0 13 29 15 15 0 1 1-13-29z'/%3E%3Cpath d='M130 104v12M124 110h12M232 104v8M228 108h8M28 128v8M24 132h8'/%3E%3Cpath d='M112 40l24 16'/%3E%3Ccircle cx='142' cy='60' r='4'/%3E%3Ccircle cx='132' cy='224' r='7'/%3E%3Ccircle cx='240' cy='232' r='2'/%3E%3Ccircle cx='96' cy='140' r='2'/%3E%3Ccircle cx='20' cy='230' r='2'/%3E%3C/svg%3E");
+  --day-sep-bg: rgba(23, 74, 143, 0.35);
+  --shadow: 0 1px 2px rgba(16, 24, 40, 0.06), 0 1px 1px rgba(16, 24, 40, 0.04);
+  --radius: 18px;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e1116;
+    --panel: #171b22;
+    --panel-2: #1e232c;
+    --hover: #1f2530;
+    --active: #25304a;
+    --text: #e8ebf0;
+    --text-2: #9aa3af;
+    --border: #262c36;
+    --bubble-in: #222833;
+    --bubble-out: #2a3d6e;
+    --bubble-out-text: #eef2ff;
+    --meta: #8d97a6;
+    --read: #7fa6ff;
+    --chat-bg: linear-gradient(200deg, #13233d 0%, #10203a 50%, #0e2230 100%);
+    --chat-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' fill='none' stroke='%23ffffff' stroke-opacity='.06' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='55' cy='55' r='15'/%3E%3Cellipse cx='55' cy='55' rx='28' ry='8' transform='rotate(-20 55 55)'/%3E%3Cpath d='M190 28l4 9 10 1-7 7 2 10-9-5-9 5 2-10-7-7 10-1z'/%3E%3Cg transform='translate(196 160) rotate(35)'%3E%3Cpath d='M0-22C9-12 9 8 5 16H-5C-9 8-9-12 0-22z'/%3E%3Ccircle cy='-4' r='4'/%3E%3Cpath d='M-5 10l-7 11 7-4M5 10l7 11-7-4'/%3E%3C/g%3E%3Cpath d='M76 172a19 19 0 1 0 13 29 15 15 0 1 1-13-29z'/%3E%3Cpath d='M130 104v12M124 110h12M232 104v8M228 108h8M28 128v8M24 132h8'/%3E%3Cpath d='M112 40l24 16'/%3E%3Ccircle cx='142' cy='60' r='4'/%3E%3Ccircle cx='132' cy='224' r='7'/%3E%3Ccircle cx='240' cy='232' r='2'/%3E%3Ccircle cx='96' cy='140' r='2'/%3E%3Ccircle cx='20' cy='230' r='2'/%3E%3C/svg%3E");
+    --day-sep-bg: rgba(255, 255, 255, 0.12);
+    color-scheme: dark;
+  }
+}

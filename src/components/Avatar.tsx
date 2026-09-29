@@ -1,3 +1,5 @@
+import './Avatar.css';
+
 const GRADIENTS = [
   ['#FF8A65', '#FF5270'],
   ['#4FC3F7', '#3D7BFF'],

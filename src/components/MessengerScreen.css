@@ -1,0 +1,24 @@
+/* Раскладка основного экрана: список чатов слева, переписка справа. */
+
+.app {
+  display: grid;
+  grid-template-columns: minmax(300px, 380px) 1fr;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* мобильная раскладка */
+@media (max-width: 720px) {
+  .app {
+    grid-template-columns: 1fr;
+  }
+  .app .chat {
+    display: none;
+  }
+  .app.has-active .sidebar {
+    display: none;
+  }
+  .app.has-active .chat {
+    display: flex;
+  }
+}
