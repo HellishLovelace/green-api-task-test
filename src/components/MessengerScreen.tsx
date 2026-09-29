@@ -24,7 +24,7 @@ export function MessengerScreen({ creds, onLogout }: { creds: Credentials; onLog
     if (action) dispatch(action);
   }, []);
 
-  const { status } = useNotifications(creds, handleNotification);
+  const connection = useNotifications(creds, handleNotification);
 
   const activeChat = state.chats.find((c) => c.chatId === state.activeChatId) ?? null;
 
@@ -34,9 +34,9 @@ export function MessengerScreen({ creds, onLogout }: { creds: Credentials; onLog
     async (chatId: string, tempId: string, text: string) => {
       try {
         const { idMessage } = await sendMessage(creds, chatId, text);
-        dispatch({ type: 'sendSucceeded', chatId, tempId, idMessage });
+        dispatch({ type: 'sendSucceeded', tempId, idMessage });
       } catch {
-        dispatch({ type: 'sendFailed', chatId, tempId });
+        dispatch({ type: 'sendFailed', tempId });
       }
     },
     [creds],
@@ -55,7 +55,7 @@ export function MessengerScreen({ creds, onLogout }: { creds: Credentials; onLog
 
   function handleRetry(m: Message) {
     if (!activeChat) return;
-    dispatch({ type: 'resend', chatId: activeChat.chatId, tempId: m.id });
+    dispatch({ type: 'resend', tempId: m.id });
     void deliver(activeChat.chatId, m.id, m.text);
   }
 
@@ -65,7 +65,7 @@ export function MessengerScreen({ creds, onLogout }: { creds: Credentials; onLog
         creds={creds}
         chats={state.chats}
         activeChatId={state.activeChatId}
-        connection={status}
+        connection={connection}
         onOpen={(chatId) => dispatch({ type: 'openChat', chatId })}
         onCreate={(chatId, phone, name) => dispatch({ type: 'createChat', chatId, phone, name })}
         onLogout={onLogout}

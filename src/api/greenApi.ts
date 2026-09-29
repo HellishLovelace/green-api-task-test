@@ -26,13 +26,8 @@ export class GreenApiError extends Error {
 
 /* ---------- Типы ответов и уведомлений ---------- */
 
-export type InstanceState =
-  | 'authorized'
-  | 'notAuthorized'
-  | 'blocked'
-  | 'starting'
-  | 'yellowCard'
-  | string;
+/** Состояние инстанса: 'authorized', 'notAuthorized', 'blocked', 'starting', 'yellowCard' и др. */
+export type InstanceState = string;
 
 /** Поля настроек инстанса, от которых зависит получение уведомлений. */
 export interface InstanceSettings {
@@ -48,10 +43,10 @@ export interface SendMessageResponse {
 }
 
 export interface CheckAccountResponse {
-  exist?: boolean;
-  chatId?: string;
-  status?: boolean;
-  reason?: string;
+  exist: boolean;
+  /** внутренний chatId мессенджера; пустая строка, если аккаунта нет */
+  chatId: string;
+  fromCache?: boolean;
 }
 
 export interface SenderData {
@@ -102,11 +97,13 @@ function buildUrl(c: Credentials, method: string, suffix = ''): string {
   )}${suffix}`;
 }
 
-async function request<T>(
-  url: string,
-  init: RequestInit = {},
-  signal?: AbortSignal,
-): Promise<T> {
+interface RequestOptions {
+  signal?: AbortSignal;
+  /** ответ 408 считать пустым результатом (ReceiveNotification: за receiveTimeout уведомлений не было) */
+  emptyOnTimeout?: boolean;
+}
+
+async function request<T>(url: string, init: RequestInit = {}, { signal, emptyOnTimeout }: RequestOptions = {}): Promise<T> {
   let res: Response;
   try {
     res = await fetch(url, {
@@ -121,8 +118,7 @@ async function request<T>(
 
   const text = await res.text();
 
-  // receiveNotification: сервер отвечает 408, если за receiveTimeout уведомлений не появилось
-  if (res.status === 408 && url.includes('/receiveNotification/')) return null as T;
+  if (res.status === 408 && emptyOnTimeout) return null as T;
 
   if (!res.ok) {
     let message = text || res.statusText;
@@ -138,7 +134,7 @@ async function request<T>(
     throw new GreenApiError(message, res.status);
   }
 
-  // receiveNotification возвращает пустое тело / "null", если очередь пуста
+  // пустое тело или "null" — пустой результат (например, очередь уведомлений пуста)
   if (!text || text === 'null') return null as T;
   return JSON.parse(text) as T;
 }
@@ -202,8 +198,8 @@ export async function resolveChatId(c: Credentials, phone: string): Promise<stri
   if (Date.now() < checkAccountPausedUntil) return byPhone;
   try {
     const res = await checkAccount(c, phone);
-    if (res.exist === false) return null;
-    return res.exist && res.chatId ? res.chatId : byPhone;
+    if (!res.exist) return null;
+    return res.chatId || byPhone;
   } catch (e) {
     if (e instanceof GreenApiError && e.status === 469) {
       checkAccountPausedUntil = Date.now() + CHECK_ACCOUNT_PAUSE_MS;
@@ -241,7 +237,7 @@ export function receiveNotification(
   return request<Notification | null>(
     buildUrl(c, 'receiveNotification', `?receiveTimeout=${receiveTimeout}`),
     {},
-    signal,
+    { signal, emptyOnTimeout: true },
   );
 }
 

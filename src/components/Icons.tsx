@@ -41,12 +41,6 @@ export const BackIcon = (p: P) => (
   </svg>
 );
 
-export const CloseIcon = (p: P) => (
-  <svg {...base} {...p}>
-    <path {...stroke} d="M18 6 6 18M6 6l12 12" />
-  </svg>
-);
-
 export const EyeIcon = ({ off, ...p }: P & { off?: boolean }) => (
   <svg {...base} {...p}>
     <path {...stroke} d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" />

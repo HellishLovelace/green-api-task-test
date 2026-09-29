@@ -31,9 +31,10 @@ export type ChatAction =
   | { type: 'openChat'; chatId: string }
   | { type: 'closeChat' }
   | { type: 'addLocal'; chatId: string; message: Message }
-  | { type: 'sendSucceeded'; chatId: string; tempId: string; idMessage: string }
-  | { type: 'sendFailed'; chatId: string; tempId: string }
-  | { type: 'resend'; chatId: string; tempId: string }
+  // сообщение ищется по tempId: пока шёл запрос, chatId чата мог смениться на настоящий
+  | { type: 'sendSucceeded'; tempId: string; idMessage: string }
+  | { type: 'sendFailed'; tempId: string }
+  | { type: 'resend'; tempId: string }
   | {
       type: 'messageReceived';
       chatId: string;

@@ -101,7 +101,7 @@ describe('chatReducer', () => {
       chatId: created.activeChatId!,
       message: { id: 'tmp', text: 'Привет', direction: 'out', timestamp: 1, status: 'sending' },
     });
-    s = chatReducer(s, { type: 'sendSucceeded', chatId: created.activeChatId!, tempId: 'tmp', idMessage: 'm1' });
+    s = chatReducer(s, { type: 'sendSucceeded', tempId: 'tmp', idMessage: 'm1' });
     expect(s.chats[0].messages[0]).toMatchObject({ id: 'm1', status: 'sent' });
     s = chatReducer(s, { type: 'statusChanged', idMessage: 'm1', status: 'read' });
     s = chatReducer(s, { type: 'statusChanged', idMessage: 'm1', status: 'delivered' });
@@ -121,7 +121,7 @@ describe('chatReducer', () => {
       name: '',
       message: { id: 'm1', text: 'Привет', direction: 'out', timestamp: 2, status: 'sent' },
     });
-    s = chatReducer(s, { type: 'sendSucceeded', chatId: created.activeChatId!, tempId: 'tmp', idMessage: 'm1' });
+    s = chatReducer(s, { type: 'sendSucceeded', tempId: 'tmp', idMessage: 'm1' });
     expect(s.chats[0].messages.map((m) => m.id)).toEqual(['m1']);
   });
 });

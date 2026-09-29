@@ -1,9 +1,9 @@
 import { Fragment, useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent } from 'react';
 import { chatTitle, type Chat, type Message } from '../model/chatStore';
+import { MESSENGERS, type Messenger } from '../model/messenger';
 import { formatPhone } from '../utils/phone';
 import { dayKey, formatDayLabel, formatTime } from '../utils/time';
 import { Avatar } from './Avatar';
-import { MESSENGERS, type Messenger } from '../model/messenger';
 import { AlertIcon, BackIcon, ChatBubblesIcon, ClockIcon, SendIcon, TicksIcon } from './Icons';
 import './ChatWindow.css';
 

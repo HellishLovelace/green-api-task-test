@@ -9,13 +9,17 @@ function sameDay(a: Date, b: Date) {
   return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
 }
 
+function isYesterday(d: Date, now: Date) {
+  const yesterday = new Date(now);
+  yesterday.setDate(now.getDate() - 1);
+  return sameDay(d, yesterday);
+}
+
 /** Время для списка чатов: сегодня — ЧЧ:ММ, иначе — дата. */
 export function formatListTime(ts: number, now = new Date()): string {
   const d = new Date(ts);
   if (sameDay(d, now)) return formatTime(ts);
-  const y = new Date(now);
-  y.setDate(now.getDate() - 1);
-  if (sameDay(d, y)) return 'вчера';
+  if (isYesterday(d, now)) return 'вчера';
   return d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'short' }).replace('.', '');
 }
 
@@ -23,9 +27,7 @@ export function formatListTime(ts: number, now = new Date()): string {
 export function formatDayLabel(ts: number, now = new Date()): string {
   const d = new Date(ts);
   if (sameDay(d, now)) return 'Сегодня';
-  const y = new Date(now);
-  y.setDate(now.getDate() - 1);
-  if (sameDay(d, y)) return 'Вчера';
+  if (isYesterday(d, now)) return 'Вчера';
   return d.toLocaleDateString('ru-RU', {
     day: 'numeric',
     month: 'long',
