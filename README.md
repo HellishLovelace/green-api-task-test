@@ -4,6 +4,8 @@
 
 Та же программа работает и с **Telegram**-инстансом GREEN-API ([документация](https://green-api.com/telegram/docs/)): мессенджер выбирается переключателем на экране входа. API у GREEN-API для обоих мессенджеров одинаковое, отличаются только допустимые номера (MAX — РФ и РБ, Telegram — любые международные) и лимит длины сообщения (4000 и 4096 символов).
 
+**Демо:** https://hellishlovelace.github.io/green-api-test-task/ — нужны свои `idInstance` и `apiTokenInstance`, они хранятся только в вашем браузере.
+
 **Стек:** React 19 + TypeScript + Vite. Без UI-библиотек и без бэкенда: браузер ходит напрямую в GREEN-API.
 
 ## Сценарий
@@ -38,6 +40,8 @@ npm run dev      # http://localhost:5173
 npm run build    # production-сборка в dist/
 npm test         # unit-тесты (vitest)
 ```
+
+При пуше в `main` GitHub Actions (`.github/workflows/deploy.yml`) прогоняет тесты, собирает проект и публикует его на GitHub Pages.
 
 ## Настройка инстанса
 
